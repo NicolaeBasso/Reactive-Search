@@ -1,0 +1,89 @@
+html, body {
+  height: auto;
+}
+
+.App {
+  text-align: center;
+}
+
+.searchBar {
+  display: flex;
+  width: 80%;
+  margin: 50px auto;
+}
+
+.searchInput {
+  width: 50%;
+  height: 2em;
+}
+
+.searchResults {
+  margin: auto 50px;
+  width: 50%;
+}
+
+.searchResultsItem {
+  margin: 10px 0;
+}
+
+.resultsItem {
+  font-weight: bold;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ant design override */
+#components-dropdown-demo-arrow .ant-btn {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+.ant-row-rtl #components-dropdown-demo-arrow .ant-btn {
+  margin-right: 0;
+  margin-bottom: 8px;
+  margin-left: 8px;
+}
+
+.ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.ant-list {
+  height: 75vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
