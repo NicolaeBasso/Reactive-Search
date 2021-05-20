@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Reactive Search
 
 ### Features:
 - Search & update displayed data on fly
