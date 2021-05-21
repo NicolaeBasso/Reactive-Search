@@ -1,6 +1,6 @@
-import { Switch, Route, useHistory, BrowserRouter } from 'react-router-dom';
-import './App.css';
-import { SearchEngine } from './components/SearchEngine';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import '../styles/App.css';
+import { SearchEngine } from './SearchEngine';
 
 function App() {
   return (
@@ -9,7 +9,6 @@ function App() {
         <Switch>
           <Route path="/" component={SearchEngine} />
         </Switch>
-        {/*<SearchEngine />*/}
       </BrowserRouter>
     </div>
   );

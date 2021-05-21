@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Dropdown, Input, List, Menu, Space } from 'antd';
+import { Dropdown, Input, List, Space } from 'antd';
 import { countryList } from '../datasets/countryList';
-import { defaultMenu } from '../datasets/defaultMenu';
+import { DropdownMenu } from './DropdownMenu';
 
 const { Search } = Input;
 
 export const SearchEngine = (props) => {
   const [state, setState] = useState({
     searchResults: countryList,
-    dropdownOptions: defaultMenu,
+    dropdownMenu: <DropdownMenu dataSet={countryList} />,
     path: props.history.location.path,
   });
 
@@ -20,31 +20,18 @@ export const SearchEngine = (props) => {
   };
 
   const updateState = (searchValue) => {
-    const path = props.history.location.path;
     props.history.push(searchValue);
     const results = getSearchResults(countryList, searchValue);
+    const dropdownMenu = <DropdownMenu dataSet={results} />;
 
-    // update dropdown options according to results, limited to 10 elements
-    let index = 0;
-    const dropdownOptions = (
-      <Menu>
-        {results.slice(0, 10).map((el) => {
-          return <Menu.Item key={index++}>{el}</Menu.Item>;
-        })}
-      </Menu>
-    );
-
-    // update state with newly computed data
     setState({
+      dropdownMenu: dropdownMenu,
       searchResults: results,
-      dropdownOptions: dropdownOptions,
       path: props.history.location.path,
     });
   };
 
   const getSearchResults = (dataSet, searchValue) => {
-    /* lower both search value and compared value
-       to check coincidence on characters only */
     const searchValueLowered = searchValue.toLowerCase();
 
     let results = dataSet.filter((el) => {
@@ -52,7 +39,6 @@ export const SearchEngine = (props) => {
       return elLowered.indexOf(searchValueLowered) >= 0;
     });
 
-    // in this section the searched part of the element is made bold
     results = results.map((el) => {
       const elLowered = el.toLowerCase();
 
@@ -77,7 +63,7 @@ export const SearchEngine = (props) => {
 
   return (
     <div className={'searchBar'}>
-      <Dropdown overlay={state.dropdownOptions} placement="bottomLeft" arrow>
+      <Dropdown overlay={state.dropdownMenu} placement="bottomLeft" arrow>
         <Space
           direction="vertical"
           className={'ant-dropdown-trigger searchInput'}
